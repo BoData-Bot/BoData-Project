@@ -5,17 +5,36 @@ import pandas as pd
 import datetime
 app = Flask(__name__)
 
+pathTo = '/Users/xuan/Desktop/BoData-Project/dummyserver/'
 
 @app.route('/statics/')
 @app.route('/statics/<name>')
 def serve_s(name=None):
-    f = open("statics/" + name)
+    f = open(pathTo + "statics/" + name)
     t = f.read()
     f.close()
     return t
 
 
-filepath = '/Users/xuan/Desktop/dummyserver/boData_mockupUser.xlsx'
+@app.route('/statics/js/')
+@app.route('/statics/js/<name>')
+def serve_js(name=None):
+    f = open(pathTo + "statics/js/" + name)
+    t = f.read()
+    f.close()
+    return t
+
+
+@app.route('/statics/css/')
+@app.route('/statics/css/<name>')
+def serve_css(name=None):
+    f = open(pathTo + "statics/css/" + name)
+    t = f.read()
+    f.close()
+    return t
+
+
+filepath = pathTo + 'boData_mockupUser.xlsx'
 xl = pd.ExcelFile(filepath)
 df1 = xl.parse('Data')
 numrows = 730
