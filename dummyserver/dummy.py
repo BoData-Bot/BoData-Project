@@ -50,6 +50,7 @@ for i in range(numrows):
     for product in products:
         tmp = df1.get_value(i, product)
         mentionsdict[ (year, month, day, product, cityname) ] = tmp
+print("50%")
 
 
 sentimentdict = dict()
@@ -64,6 +65,7 @@ for i in range(numrows2):
     if not (product, city) in sentimentdict:
         sentimentdict[(product, city)] = [ ]
     sentimentdict[(product, city)].append([s, pon, float(c)])
+print("100%")
 
 
 @app.route("/getsentimentfigure", methods=["POST"])
