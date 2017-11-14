@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BoData-Project.iml" filepath="$PROJECT_DIR$/BoData-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BoData-Project_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BoData-Project_main.iml" group="BoData-Project" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BoData-Project_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BoData-Project_test.iml" group="BoData-Project" />
+    </modules>
+  </component>
+</project>

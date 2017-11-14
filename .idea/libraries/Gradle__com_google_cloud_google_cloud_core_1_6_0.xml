@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.cloud:google-cloud-core:1.6.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-core/1.6.0/16c145cea44ff6ab5d3f598b9c17e8144fac412/google-cloud-core-1.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud/google-cloud-core/1.6.0/5d2488ed9a1ffc398a5552270d3c5cba389a21e/google-cloud-core-1.6.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

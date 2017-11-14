@@ -9,13 +9,15 @@ $(document).ready(function(){
     {
       begin: "2017-4-7",
       end: "2017-10-6",
-      products: "[['ProdA', 'ProdB', 'ProbC'], ['Bangkok']]"
+      products: "[['ProdA'], ['Kuala Lampur']]"
     },
     function(data, status){
       alert("Data: " + data);
+      console.log(data);
     });
   });
 });
+//console.log(data)
 </script>
 </head>
 <body>
