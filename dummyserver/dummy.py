@@ -1,11 +1,13 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+from flask_cors import CORS
 import pandas as pd
 import datetime
 app = Flask(__name__)
+CORS(app)
 
-pathTo = '/Users/xuan/Desktop/BoData-Project/dummyserver/'
+pathTo = '/Users/xuan/BoData-Project/dummyserver/'
 
 @app.route('/statics/')
 @app.route('/statics/<name>')
