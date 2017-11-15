@@ -19,20 +19,25 @@
     <script>
         $(document).ready(function(){
             $("button").click(function(){
-                $.post("http://localhost:5000/getmentionsfigure",
+                $.post("http://localhost:5000/getsentimentfigure",
                     {
-                        begin: "2017-4-7",
-                        end: "2017-10-6",
-                        products: "[['ProdB'], ['Bangkok']]"
+                        products: "[['ProdA'], ['Bangkok']]"
                     },
                     function(data, status){
-                        alert("Data: " + data);
-                        console.log(data);
+                        //alert("Data: " + data);
+                        //console.log(data[0]);
+                        realdata = eval(data);
+                        line = realdata[0]
+                        console.log(line[0]);
                     });
             });
         });
+
+
         //console.log(data)
     </script>
+
+
 
 
 
@@ -82,24 +87,37 @@
         <div class="row">
             <div class="col-12">
                 <br>
+                <!--<img src="boData_bot.png" alt="boData bot">-->
                 <h1><center>Welcome to boData</center></h1>
-                <br>
+
+                <br><br>
 
                 <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-2">
-                        <img src="boData_bot.png" alt="boData bot">
+                    <div class="col-sm-6">
+                       <center>
+                           <h3>Product Mentions</h3>
+                           <p>Are customers aware of your product?</p>
+                           <a href="product-mentions.html">
+                           <img src="mention-icon.png" alt="sentiment meter" height = "25%" width="25%">
+                           </a>
+                       </center>
+                    </div>
+                    <div class="col-sm-6">
+                        <center>
+                            <h3>Product Sentiment</h3>
+                            <p>How do customers feel about your product?</p>
+                            <a href="product-sentiment.html">
+                            <img src="sentiment-icon.png" alt="sentiment meter" height = "50%" width="50%">
+                            </a>
+                        </center>
                     </div>
 
-                    <div class="col-sm-9">
-                        <br><br><br><br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a varius ex, in congue turpis. Morbi vitae leo ut ipsum tincidunt convallis. Nunc imperdiet felis eget ipsum scelerisque, nec placerat erat efficitur. Etiam semper tortor id congue mattis. Suspendisse non massa tellus. Ut aliquam felis eu ligula lacinia faucibus.</p>
-                    </div>
+                    <!--<div class="col-sm-9">-->
+                        <!--<br><br><br><br>-->
+                        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean a varius ex, in congue turpis. Morbi vitae leo ut ipsum tincidunt convallis. Nunc imperdiet felis eget ipsum scelerisque, nec placerat erat efficitur. Etiam semper tortor id congue mattis. Suspendisse non massa tellus. Ut aliquam felis eu ligula lacinia faucibus.</p>-->
+                    <!--</div>-->
                 </div>
 
-                <div><h2>Just click the button below :)</h2></div>
-
-                <button>Get External Content</button>
 
 
 

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>SB Admin - Start Bootstrap Template</title>
+  <title>boData</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -17,23 +17,22 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+  <style>
+
+      #sentiment-product {
+          width: 150px;
+      }
+
+      #sentiment-location {
+          width: 150px;
+      }
+
+
+  </style>
 
   <script>
-      $(document).ready(function(){
-          $("button").click(function(){
-              $.post("http://localhost:5000/getmentionsfigure",
-                  {
-                      begin: "2017-4-7",
-                      end: "2017-10-6",
-                      products: "[['ProdA'], ['Bangkok']]"
-                  },
-                  function(data, status){
-                      alert("Data: " + data);
-                      console.log(data);
-                  });
-          });
-      });
-      //console.log(data)
+
+
   </script>
 
 
@@ -80,28 +79,49 @@
 </nav>
 <div class="content-wrapper">
   <div class="container-fluid">
+    <h1>Sentiment Analysis</h1>
+    <p>1. Select product and location</p>
+      <p>2. Click Analyze</p>
+
     <div class = "row">
 
       <div class = "col-md-3">
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"">Product
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">ProdA</a></li>
-            <li><a href="#">ProdB</a></li>
-            <li><a href="#">ProdC</a></li>
-          </ul>
-        </div>
+          <label>Product</label>
+          <br>
+          <select id="sentiment-product">
+              <option>ProdA</option>
+              <option>ProdB</option>
+              <option>ProdC</option>
+          </select>
+          <br><br>
+          <div><input type="button" value="analyze" onclick = "test_function()"/></div>
+        <!--<div class="dropdown">-->
+          <!--<button class="btn btn-primary dropdown-toggle" id = "sentiment-product" type="button" data-toggle="dropdown">Product-->
+          <!--<span class="caret"></span></button>-->
+          <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#">ProdA</a></li>-->
+            <!--<li><a href="#">ProdB</a></li>-->
+            <!--<li><a href="#">ProdC</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
       </div>
       <div class = "col-md-3">
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Location
-            <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Bangkok</a></li>
-            <li><a href="#">Kuala Lampur</a></li>
-          </ul>
-        </div>
+          <label>Location</label>
+          <br>
+          <select id="sentiment-location">
+              <option>Bangkok</option>
+              <option>Kuala Lampur</option>
+          </select>
+
+          <!--<div class="dropdown">-->
+          <!--<button class="btn btn-primary dropdown-toggle" id = "sentiment-location" type="button" data-toggle="dropdown">Location-->
+            <!--<span class="caret"></span></button>-->
+          <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#">Bangkok</a></li>-->
+            <!--<li><a href="#">Kuala Lampur</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+
       </div>
 
     </div>
@@ -110,7 +130,7 @@
 
     <div class="row">
 
-      <div class = "col-md-12" size = "20%">
+      <div class = "col-md-12" id = "graph">
         <canvas id="ProductSentiment"></canvas>
       </div>
     </div>
@@ -126,177 +146,24 @@
             <tr>
               <th>Sentence</th>
               <th>Sentiment</th>
-              <th>Confidence</th>
+              <th style = 'text-align: center;'>Confidence</th>
 
             </tr>
             </thead>
-            <tfoot>
-            <tr>
-              <th>Sentence</th>
-              <th>Sentiment</th>
-              <th>Confidence</th>
-            </tr>
-            </tfoot>
+            <!--<tfoot>-->
+            <!--<tr>-->
+              <!--<th>Sentence</th>-->
+              <!--<th>Sentiment</th>-->
+              <!--<th>Confidence</th>-->
+            <!--</tr>-->
+            <!--</tfoot>-->
             <tbody>
             <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 87 </td>
+              <td> Example: I love this soda</td>
+              <td  style = 'background-color: #20c997;' > positive </td>
+              <td style = 'text-align: center;'> 99 </td>
             <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 65 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 52 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 42 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 14 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 83 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 69 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 53 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 90 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 22 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 31 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 11 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 13 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 90 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 29 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 100 </td>
-            <tr><tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 87 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 65 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 52 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 42 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 14 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 83 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 69 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 53 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 90 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 22 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 31 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> negative </td>
-              <td> 11 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 13 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 90 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 29 </td>
-            <tr>
-            <tr>
-              <td> sample sentence blah blah </td>
-              <td> positive </td>
-              <td> 100 </td>
-            <tr>            </tbody>
+            </tbody>
           </table>
         </div>
       </div>
@@ -350,39 +217,163 @@
   <script src="js/sb-admin-charts.min.js"></script>
 
   <script>
-      var ctx = document.getElementById('ProductSentiment').getContext('2d');
-      var ProductMentions = new Chart(ctx, {
-          type: 'bar',
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true
+
+
+
+
+      function test_function2(){
+          // var temp = $('#sentiment-product:selected').text();
+          var temp = $('#sentiment-product').find(":selected").text();
+          console.log("hello", temp);
+      }
+
+      var counter_pos = 0;
+      var counter_neg = 0;
+      var counter_neut = 0;
+
+      function test_function(){
+           console.log("hi");
+          var product = $('#sentiment-product').find(":selected").text();
+          var location = $('#sentiment-location').find(":selected").text();
+
+          $.post("http://localhost:5000/getsentimentfigure",
+              {
+                  products: "[['"+ product +"'],['" + location + "']]"
+              },
+              function(data, status){
+                  realdata = eval(data);
+
+                  for(var i = 0; i < realdata.length-1; i++) {
+
+                      line = realdata[i];
+                      var sentence = line[0];
+                      var sentiment = line[1];
+                      var confidence = line[2];
+                      if (sentiment == "positive") {
+                          var color = "#20c997;"
+                          counter_pos = counter_pos +1;
+                      } else if (sentiment == "neutral") {
+                          var color = "#FFC107;"
+                          counter_neut = counter_neut +1;
+                      } else {
+                          var color = "#dc3545;"
+                          counter_neg = counter_neg +1;
+                          //console.log(counter)
                       }
-                  }]
-              }
-          },
-          data: {
-              labels: ['Negative','Neutral','Positive'],
-              datasets: [{
-                  label: 'Negative',
-                  data: [1],
-                  backgroundColor: "rgba(220,53,69,1)"
 
-              }, {
-                  label: 'Neutral',
-                  data: [2],
-                  backgroundColor: "rgba(134,142,150,1)"
+                      $("#dataTable").append( "<tr><td>" + sentence + "</td>" +
+                          "<td style = 'background-color: " + color +"'>" + sentiment + "</td>" +
+                          "<td style = 'text-align: center;'>" + confidence + "</td></tr>");
 
-              },{
-                  label: 'Positive',
-                  data: [1],
-                  backgroundColor: "rgba(140,167,69,1)"
 
-              }
-              ]
-          }
-      });
+                  }
+
+                  var ctx = document.getElementById('ProductSentiment').getContext('2d');
+
+                  var ProductMentions = new Chart(ctx, {
+                      type: 'bar',
+                      options: {
+                          responsive: true,
+                          maintainAspectRatio: false,
+                          legend: {
+                              display: true
+                          },
+                          scales: {
+                              yAxes: [{
+                                  ticks: {
+                                      beginAtZero: true
+                                  }
+                              }],
+                              xAxes: [{
+                                  gridLines: {
+                                      display:false
+                                  }
+                              }]
+
+
+                          }
+                      },
+                      data: {
+
+                          // labels: ['Negative','Neutral','Positive'],
+                          datasets: [{
+                              label: 'Negative',
+                              data: [counter_neg],
+                              backgroundColor: "rgba(220,53,69,1)"
+
+                          }, {
+                              label: 'Neutral',
+                              data: [counter_neut],
+                              backgroundColor: "rgba(255,193,7,1)"
+
+                          },{
+                              label: 'Positive',
+                              data: [counter_pos],
+                              backgroundColor: "rgba(32,201,151,1)"
+
+                          }
+                          ]
+                      }
+                  });
+
+                  //realdata = eval(data);
+                  //console.log(realdata[0]);
+              });
+      }
+
+
+
+
+      //console.log(counter);
+//      var ctx = document.getElementById('ProductSentiment').getContext('2d');
+//
+//      var ProductMentions = new Chart(ctx, {
+//          type: 'bar',
+//          options: {
+//              responsive: true,
+//              maintainAspectRatio: false,
+//              legend: {
+//                  display: true
+//              },
+//              scales: {
+//                  yAxes: [{
+//                      ticks: {
+//                          beginAtZero: true
+//                      }
+//                  }],
+//                  xAxes: [{
+//                      gridLines: {
+//                          display:false
+//                      }
+//                  }]
+//
+//
+//              }
+//          },
+//          data: {
+//
+//             // labels: ['Negative','Neutral','Positive'],
+//              datasets: [{
+//                  label: 'Negative',
+//                  data: [12],
+//                  backgroundColor: "rgba(220,53,69,1)"
+//
+//              }, {
+//                  label: 'Neutral',
+//                  data: [2],
+//                  backgroundColor: "rgba(134,142,150,1)"
+//
+//              },{
+//                  label: 'Positive',
+//                  data: [1],
+//                  backgroundColor: "rgba(40,167,69,1)"
+//
+//              }
+//              ]
+//          }
+//      });
+
+
   </script>
 
 
