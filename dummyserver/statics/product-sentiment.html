@@ -158,7 +158,7 @@
             <!--</tr>-->
             <!--</tfoot>-->
             <tbody>
-            <tr>
+            <tr class = 'sample-sentence'>
               <td> Example: I love this soda</td>
               <td  style = 'background-color: #20c997;' > positive </td>
               <td style = 'text-align: center;'> 99 </td>
@@ -236,7 +236,13 @@
           var product = $('#sentiment-product').find(":selected").text();
           var location = $('#sentiment-location').find(":selected").text();
 
-          $('tr').remove();
+          var counter_pos = 0;
+          var counter_neg = 0;
+          var counter_neut = 0;
+
+
+          $('.new-sentence').remove();
+          $('.sample-sentence').remove();
 
           $.post("http://localhost:5000/getsentimentfigure",
               {
@@ -263,7 +269,7 @@
                           //console.log(counter)
                       }
 
-                      $("#dataTable").append( "<tr><td>" + sentence + "</td>" +
+                      $("#dataTable").append( "<tr class='new-sentence'><td>" + sentence + "</td>" +
                           "<td style = 'background-color: " + color +"'>" + sentiment + "</td>" +
                           "<td style = 'text-align: center;'>" + confidence + "</td></tr>");
 
