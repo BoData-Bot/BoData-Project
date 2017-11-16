@@ -359,7 +359,7 @@
     <script>
 
         // global variables
-        var monthlyTotal = [];
+//        var monthlyTotal = [];
         var beginDate = "2017-01-01";  // don't need this anymore, just POST request the whole year
         var productName;
 
@@ -375,31 +375,29 @@
         var productMentionsGraph;
         var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-
-
         //   -----       at start, grabTextData, send new request, make graph   -----   //
         $(document).ready(function(){
-            grabTextData();
+            refreshData();
             makePost();
-//            makeGraph();  // call make the graph
         })
 
-        function grabTextData() {
-            // grab updated text values from drop down selections
-            productName = $("#product-select option:selected").text();
-            locationSelected = $("#location-select option:selected").text();
-            productLoc = "[['" + productName + "']," + "['" + locationSelected + "']]";
-
-            var y_start = $("#year_start option:selected").text();
-            m_start = $("#month_start option:selected").text();
-            var d_start = $("#day_start option:selected").text();
-//            beginDate = y_start + '-' + m_start + '-' + d_start;
-
-            var y_end = $("#year_end option:selected").text();
-            m_end = $("#month_end option:selected").text();
-            var d_end = $("#day_end option:selected").text();
-//            endDate = y_end + '-' + m_end + '-' + d_end;
-        };  // end refresh()
+//        function grabTextData() {
+//            // grab updated text values from drop down selections
+//            productName = $("#product-select option:selected").text();
+//            locationSelected = $("#location-select option:selected").text();
+//            productLoc = "[['" + productName + "']," + "['" + locationSelected + "']]";
+//
+//            var y_start = $("#year_start option:selected").text();
+//            m_start = $("#month_start option:selected").text();
+//            var d_start = $("#day_start option:selected").text();
+////            beginDate = y_start + '-' + m_start + '-' + d_start;
+//
+//            var y_end = $("#year_end option:selected").text();
+//            m_end = $("#month_end option:selected").text();
+//            var d_end = $("#day_end option:selected").text();
+////            endDate = y_end + '-' + m_end + '-' + d_end;
+//            makePost();
+//        };  // end refresh()
 
         // refreshData
         function refreshData() {
@@ -418,11 +416,15 @@
             var d_end = $("#day_end option:selected").text();
 //            endDate = y_end + '-' + m_end + '-' + d_end;
 
-            makeGraph();
+            console.log("the refresh data: " + productLoc);
+
+            makePost();
         };  // end refresh()
 
         // send new POST request for mentions
         function makePost() {
+
+            var monthlyTotal = [];
 
             $.post("http://localhost:5000/getmentionsfigure",
                 {
@@ -431,10 +433,10 @@
                     products: productLoc
                 },
                 function (data, status) {  // success function to create a monthly values array
-
                     data = eval(data); // convert to array
 
-                    monthlyTotal = [];
+//                    console.log("the post return data: " + data);
+//                    monthlyTotal = [];  // reset monthly total
 
                     mStart = parseInt(m_start) - 1;  // convert to int
                     mEnd = parseInt(m_end) - 1;  // convert to int
@@ -458,12 +460,19 @@
                             tempTotal += data[day];
                         }
                         monthlyTotal.push(tempTotal);
+//                        console.log("the before monthly total is: " + monthlyTotal);
                     }  // end for loop
+
+                    console.log("the before monthly total is: " + monthlyTotal);
+                    makeGraph(monthlyTotal);
+
                 }  // end post
             )  // end success function
+
+
         };  // end makePost function
 
-        function makeGraph() {
+        function makeGraph(monthlyTotal) {
 
             console.log(monthlyTotal);
 
@@ -517,6 +526,12 @@
                             borderColor: "#007bff",
                             borderDash: [5, 5]
                         }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: productName + ' in ' + locationSelected
+                        }
                     }
                 });  // end making graph
             }   // end else
