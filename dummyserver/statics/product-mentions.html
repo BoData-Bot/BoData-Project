@@ -2,171 +2,347 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>SB Admin - Start Bootstrap Template</title>
-  <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script>
-      $(document).ready(function(){
-          $("button").click(function(){
-              $.post("http://localhost:5000/getmentionsfigure",
-                  {
-                      begin: "2017-4-7",
-                      end: "2017-10-6",
-                      products: "[['ProdA'], ['Bangkok']]"
-                  },
-                  function(data, status){
-                      alert("Data: " + data);
-                      console.log(data);
-                  });
-          });
-      });
-      //console.log(data)
-  </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
+    <style>
+        .container-eric {
+            width: 70%;
+            margin: 15px auto;
+        }
 
+        fieldset.date {
+            margin: 0;
+            padding: 0;
+            padding-left: 20px;
+            padding-bottom: .5em;
+            display: block;
+            border: none;
+        }
+
+        fieldset.date legend {
+            margin: 0;
+            padding: 0;
+            margin-top: .25em;
+            font-size: 100%;
+        }
+
+
+        fieldset.date label {
+            position: absolute;
+            top: -20em;
+            left: -200em;
+        }
+
+        fieldset.date select {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            display: inline;
+        }
+
+        span.inst {
+            font-size: 75%;
+            color: blue;
+            padding-left: .25em;
+        }
+
+
+        fieldset.date select:active,
+        fieldset.date select:focus,
+        fieldset.date select:hover
+        {
+            border-color: gray;
+            background-color: lightyellow;
+        }
+
+    </style>
 
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-  <a class="navbar-brand" href="index.html">boData</a>
+    <a class="navbar-brand" href="index.html">boData</a>
 
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-        <a class="nav-link" href="product-mentions.html">
-          <i class="fa fa-fw fa-area-chart"></i>
-          <span class="nav-link-text">Product Mentions</span>
-        </a>
-      </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-        <a class="nav-link" href="product-sentiment.html">
-          <i class="fa fa-fw fa-table"></i>
-          <span class="nav-link-text">Sentiment Analysis</span>
-        </a>
-      </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                <a class="nav-link" href="product-mentions.html">
+                    <i class="fa fa-fw fa-area-chart"></i>
+                    <span class="nav-link-text">Product Mentions</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                <a class="nav-link" href="product-sentiment.html">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Sentiment Analysis</span>
+                </a>
+            </li>
 
-    </ul>
-    <ul class="navbar-nav sidenav-toggler">
-      <li class="nav-item">
-        <a class="nav-link text-center" id="sidenavToggler">
-          <i class="fa fa-fw fa-angle-left"></i>
-        </a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-      </li>
-    </ul>
-  </div>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div class="content-wrapper">
-  <div class="container-fluid">
-      <div class = "row">
+    <div class="container-eric">
+        <div class = "row">
 
-      <div class = "col-md-3">
-          <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"">Product
-                  <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                  <li><a href="#">ProdA</a></li>
-                  <li><a href="#">ProdB</a></li>
-                  <li><a href="#">ProdC</a></li>
-              </ul>
-          </div>
-      </div>
-      <div class = "col-md-3">
-          <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Location
-                  <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                  <li><a href="#">Bangkok</a></li>
-                  <li><a href="#">Kuala Lampur</a></li>
-              </ul>
-          </div>
-      </div>
-          <div class = "col-md-3">
-              <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Date
-                      <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                      <li><a href="#">Fix Me!</a></li>
-                      <li><a href="#">Fix Me!</a></li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-    <!-- Area Chart Example-->
-      <br><br><br>
-      <div class="row">
+            <div class="col-md-3" text="Product">
 
-          <div class = "col-md-12">
-              <canvas id="ProductMentions"></canvas>
-          </div>
-      </div>
-    <!--<div class="card mb-3">-->
-      <!--<div class="card-header">-->
-        <!--<i class="fa fa-area-chart"></i> Area Chart Example</div>-->
-      <!--<div class="card-body">-->
-        <!--<canvas id="myAreaChart" width="100%" height="30">-->
+                <legend>Product</legend>
+                <Select id="product-select">
+                    <option selected="selected">ProdA</option>
+                    <option>ProdB</option>
+                </Select>
+                <!--<label for="month_start">Month</label>-->
+                <!--<select id="month_start"-->
+                <!--name="month_start" />-->
+            </div>
 
+            <div class="col-md-3" text="Location">
 
-        <!--</canvas>-->
-          <!--<img src=" product-mentions-figure.png" alt="product-mentions-figure" height = "75%" width="75%">-->
-      <!--</div>-->
-      <!--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+                <legend>Location</legend>
+                <Select id="location-select">
+                    <option selected="selected">Bangkok</option>
+                    <option>Kuala Lampur</option>
+                </Select>
+                <!--<label for="month_start">Month</label>-->
+                <!--<select id="month_start"-->
+                <!--name="month_start" />-->
+            </div>
+            <div>
+                <fieldset class="date">
+                    <legend>Start Date </legend>
+                    <label for="month_start">Month</label>
+                    <select id="month_start"
+                            name="month_start" />
+                    <option selected="selected">01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option >04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    </option>
+                    </select> -
+                    <label for="day_start">Day</label>
+                    <select id="day_start"
+                            name="day_start" />
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                    </option>
+                    </select> -
+                    <label for="year_start">Year</label>
+                    <select id="year_start"
+                            name="year_start" />
+                    <option>2009</option>
+                    <option>2010</option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option selected="selected">2017</option>
+                    <option>2018</option>
+                    </option>
+                    </select>
+                    <span class="inst"></span>
+                </fieldset>
 
-    </div>
+                <fieldset class="date">
+                    <legend>End Date </legend>
+                    <label for="month_end">Month</label>
+                    <select id="month_end"
+                            name="month_end" />
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option selected="selected">12</option>
+                    </option>
+                    </select> -
+                    <label for="day_end">Day</label>
+                    <select id="day_end"
+                            name="day_end" />
+                    <option selected="selected">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option selected="selected">31</option>
+                    </option>
+                    </select> -
+                    <label for="year_end">Year</label>
+                    <select id="year_end"
+                            name="year_end" />
+                    <option>2009</option>
+                    <option>2010</option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                    <option>2014</option>
+                    <option>2015</option>
+                    <option>2016</option>
+                    <option selected="selected">2017</option>
+                    <option>2018</option>
+                    </option>
+                    </select>
+                    <span class="inst"></span>
+                </fieldset>
 
-  <!-- /.content-wrapper-->
-  <footer class="sticky-footer">
-    <div class="container">
-      <div class="text-center">
-        <small>Cornell Tech 2017</small>
-      </div>
-    </div>
-  </footer>
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fa fa-angle-up"></i>
-  </a>
-  <!-- Logout Modal-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+                <div>
+                    <button id="update-button" type="button" onclick="refreshData()">Update
+                    </button>
+
+                </div>
+
+                <!--<div class="dropdown">-->
+                <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Date-->
+                <!--<span class="caret"></span></button>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--<li><a href="#">Fix Me!</a></li>-->
+                <!--<li><a href="#">Fix Me!</a></li>-->
+                <!--</ul>-->
+                <!--</div>-->
+
+            </div>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Area Chart Example-->
+        <br><br><br>
+        <div class="row">
+
+            <div class = "col-md-12">
+                <canvas id="productMentions"></canvas>
+            </div>
         </div>
-      </div>
+
     </div>
-  </div>
-  <!-- Bootstrap core JavaScript-->
+
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Cornell Tech 2017</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -179,28 +355,191 @@
     <!-- Custom scripts for this page-->
     <script src="js/sb-admin-charts.min.js"></script>
 
+
     <script>
-        var ctx = document.getElementById('ProductMentions').getContext('2d');
-        var ProductMentions = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'ProdA',
-                    data: [12, 19, 3, 17, 6, 3, 7, 6, 3, 7, 6, 3, 7],
-                    backgroundColor: "rgba(0,123,255,.2)",
-                    borderColor: "#007bff",
-                    borderDash: [5,5]
-                }, {
-                    label: 'ProdB',
-                    data: [2, 29, 5, 5, 2, 3, 10, 2, 3, 10, 2, 3, 10],
-                    backgroundColor: "rgba(220,53,69,0.2)",
-                    borderColor: "#dc3545",
-                    borderDash: [5,5]
-                }]
+
+        // global variables
+        var monthlyTotal = [];
+        var beginDate = "2017-01-01";  // don't need this anymore, just POST request the whole year
+        var productName;
+
+        var m_start;  // string version
+        var m_end;  // string version
+
+        var endDate = "2017-12-31";
+        var locationSelected;
+        var productLoc;
+
+        // global variables, bad practice I know...
+        var firstGraphMade = false;
+        var productMentionsGraph;
+        var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+
+
+        //   -----       at start, grabTextData, send new request, make graph   -----   //
+        $(document).ready(function(){
+            grabTextData();
+            makePost();
+//            makeGraph();  // call make the graph
+        })
+
+        function grabTextData() {
+            // grab updated text values from drop down selections
+            productName = $("#product-select option:selected").text();
+            locationSelected = $("#location-select option:selected").text();
+            productLoc = "[['" + productName + "']," + "['" + locationSelected + "']]";
+
+            var y_start = $("#year_start option:selected").text();
+            m_start = $("#month_start option:selected").text();
+            var d_start = $("#day_start option:selected").text();
+//            beginDate = y_start + '-' + m_start + '-' + d_start;
+
+            var y_end = $("#year_end option:selected").text();
+            m_end = $("#month_end option:selected").text();
+            var d_end = $("#day_end option:selected").text();
+//            endDate = y_end + '-' + m_end + '-' + d_end;
+        };  // end refresh()
+
+        // refreshData
+        function refreshData() {
+            // grab updated text values from drop down selections
+            productName = $("#product-select option:selected").text();
+            locationSelected = $("#location-select option:selected").text();
+            productLoc = "[['" + productName + "']," + "['" + locationSelected + "']]";
+
+            var y_start = $("#year_start option:selected").text();
+            m_start = $("#month_start option:selected").text();
+            var d_start = $("#day_start option:selected").text();
+//            beginDate = y_start + '-' + m_start + '-' + d_start;
+
+            var y_end = $("#year_end option:selected").text();
+            m_end = $("#month_end option:selected").text();
+            var d_end = $("#day_end option:selected").text();
+//            endDate = y_end + '-' + m_end + '-' + d_end;
+
+            makeGraph();
+        };  // end refresh()
+
+        // send new POST request for mentions
+        function makePost() {
+
+            $.post("http://localhost:5000/getmentionsfigure",
+                {
+                    begin: beginDate,
+                    end: endDate,
+                    products: productLoc
+                },
+                function (data, status) {  // success function to create a monthly values array
+
+                    data = eval(data); // convert to array
+
+                    monthlyTotal = [];
+
+                    mStart = parseInt(m_start) - 1;  // convert to int
+                    mEnd = parseInt(m_end) - 1;  // convert to int
+
+                    var xAxisLength = mEnd - mStart + 1;  // get number of entries (size of array to expect)
+
+                    var daysByMonth2017 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                    var cummulativeStartIndex = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+                    var cummulativeEndIndex = [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
+
+                    var month2017 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                    var totalMentions = 0;
+                    var startIndex = cummulativeStartIndex[mStart];
+
+                    for (month = 0; month < 12; month++) {  // for all the months
+                        var tempTotal = 0;
+                        var start = 0;
+
+                        for (day = cummulativeStartIndex[month]; day < cummulativeEndIndex[month]; day++) {
+                            tempTotal += data[day];
+                        }
+                        monthlyTotal.push(tempTotal);
+                    }  // end for loop
+                }  // end post
+            )  // end success function
+        };  // end makePost function
+
+        function makeGraph() {
+
+            console.log(monthlyTotal);
+
+            mStartIndex = parseInt(m_start) - 1;  // convert to int
+            mEndIndex = parseInt(m_end) - 1;  // convert to int
+
+            // adjust the labels
+            newLabels = labels.slice(mStartIndex,mEndIndex+1);
+
+            // make the graph
+            var ctx = document.getElementById('productMentions').getContext('2d');
+
+            // if not the first graph, make a new one
+            if(!firstGraphMade) {
+
+                productMentionsGraph = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: newLabels,
+                        datasets: [{
+                            label: productName,
+                            data: monthlyTotal,
+                            backgroundColor: "rgba(0,123,255,.2)",
+                            borderColor: "#007bff",
+                            borderDash: [5, 5]
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: productName + ' in ' + locationSelected
+                        }
+                    }
+                });  // end making graph
+
+                firstGraphMade = true;
             }
-        });
+
+            // else a graph exists, destroy it first
+            else {
+                productMentionsGraph.destroy();
+
+                productMentionsGraph = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: newLabels,
+                        datasets: [{
+                            label: productName,
+                            data: monthlyTotal,
+                            backgroundColor: "rgba(0,123,255,.2)",
+                            borderColor: "#007bff",
+                            borderDash: [5, 5]
+                        }]
+                    }
+                });  // end making graph
+            }   // end else
+        }  // end makeGraph()
+
     </script>
+
+    <!--second item for later-->
+
+    <!--, {-->
+    <!--label: 'ProdB',-->
+    <!--data: [2, 29, 5, 5, 2, 3, 10, 2, 3, 10, 2, 3, 10],-->
+    <!--backgroundColor: "rgba(220,53,69,0.2)",-->
+    <!--borderColor: "#dc3545",-->
+    <!--borderDash: [5,5]-->
+    <!--}-->
+
+    <!--options: {-->
+    <!--title: {-->
+    <!--display: true,-->
+    <!--text: productName + ' in ' + locationSelected-->
+    <!--}-->
+    <!--}-->
 
 
 </div>
