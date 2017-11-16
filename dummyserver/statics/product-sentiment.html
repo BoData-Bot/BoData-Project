@@ -236,6 +236,8 @@
           var product = $('#sentiment-product').find(":selected").text();
           var location = $('#sentiment-location').find(":selected").text();
 
+          $('tr').remove();
+
           $.post("http://localhost:5000/getsentimentfigure",
               {
                   products: "[['"+ product +"'],['" + location + "']]"
