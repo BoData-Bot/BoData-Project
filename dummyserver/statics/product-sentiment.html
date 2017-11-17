@@ -19,12 +19,25 @@
 
   <style>
 
+      #analyze-button {
+        width: 135px;
+      }
+
+      #download-button{
+        width: 135px;
+      }
+
+
       #sentiment-product {
           width: 150px;
       }
 
       #sentiment-location {
           width: 150px;
+      }
+
+      #chart-area {
+        display: none;
       }
 
 
@@ -80,8 +93,8 @@
 <div class="content-wrapper">
   <div class="container-fluid">
     <h1>Sentiment Analysis</h1>
-    <p>1. Select product and location</p>
-      <p>2. Click Analyze</p>
+    <!--<p>1. Select product and location</p>-->
+      <!--<p>2. Click Analyze</p>-->
 
     <div class = "row">
 
@@ -94,7 +107,8 @@
               <option>ProdC</option>
           </select>
           <br><br>
-          <div><input type="button" value="analyze" onclick = "test_function()"/></div>
+          <div><input type="button" id = "analyze-button" value="analyze" onclick = "test_function()"/></div>
+
         <!--<div class="dropdown">-->
           <!--<button class="btn btn-primary dropdown-toggle" id = "sentiment-product" type="button" data-toggle="dropdown">Product-->
           <!--<span class="caret"></span></button>-->
@@ -112,7 +126,8 @@
               <option>Bangkok</option>
               <option>Kuala Lampur</option>
           </select>
-
+        <br><br>
+        <div><input type="button" id = "download-button" value="download data"></div>
           <!--<div class="dropdown">-->
           <!--<button class="btn btn-primary dropdown-toggle" id = "sentiment-location" type="button" data-toggle="dropdown">Location-->
             <!--<span class="caret"></span></button>-->
@@ -233,6 +248,7 @@
 //
       function test_function(){
            console.log("hi");
+          $('#chart-area').show();
 
            $('#graph').remove()
 
