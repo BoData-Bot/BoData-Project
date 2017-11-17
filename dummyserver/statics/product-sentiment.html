@@ -128,7 +128,7 @@
     <!-- Area Chart Example-->
     <br><br><br>
 
-    <div class="row">
+    <div class="row" id = "chart-area">
 
       <div class = "col-md-12" id = "graph">
         <canvas id="ProductSentiment"></canvas>
@@ -227,12 +227,21 @@
           console.log("hello", temp);
       }
 
-      var counter_pos = 0;
-      var counter_neg = 0;
-      var counter_neut = 0;
-
+//      var counter_pos = 0;
+//      var counter_neg = 0;
+//      var counter_neut = 0;
+//
       function test_function(){
            console.log("hi");
+
+           $('#graph').remove()
+
+          $('#chart-area').append("<div class = 'col-md-12' id = 'graph'> <canvas id='ProductSentiment'></canvas> </div>");
+
+
+
+
+
           var product = $('#sentiment-product').find(":selected").text();
           var location = $('#sentiment-location').find(":selected").text();
 
