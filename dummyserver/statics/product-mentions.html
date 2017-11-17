@@ -528,6 +528,7 @@
         function makeGraph(bothMonthlyTotals) {
             // bothMonthlyTotals = size 2 array of monthly totals for 2 productss
 
+            var productLabel1 = productName1 + ' in ' + locationSelected1;
             var productLabel2;
 
             // chart color values
@@ -550,8 +551,8 @@
             if(productName2 != 'None') {
                 product2background = redBackgroundColor;
                 product2border = redBorderColor;
-                titleDisplayText = productName1 + ' in ' + locationSelected1 + ' and ' + productName2 + ' in ' + locationSelected2;
-                productLabel2 = productName2;
+                titleDisplayText = productName1 + ' in ' + locationSelected1 + ' vs ' + productName2 + ' in ' + locationSelected2;
+                productLabel2 = productName2 + ' in ' + locationSelected2;
             }
 
             else {
@@ -581,7 +582,7 @@
                     data: {
                         labels: newLabels,
                         datasets: [{
-                            label: productName1,
+                            label: productLabel1,
                             data: monthlyTotal1,
                             backgroundColor: "rgba(0,123,255,.2)",
                             borderColor: "#007bff",
@@ -595,6 +596,13 @@
                         }]
                     },
                     options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        },
                         title: {
                             display: true,
                             text: titleDisplayText
@@ -614,7 +622,7 @@
                     data: {
                         labels: newLabels,
                         datasets: [{
-                            label: productName1,
+                            label: productLabel1,
                             data: monthlyTotal1,
                             backgroundColor: "rgba(0,123,255,.2)",
                             borderColor: "#007bff",
@@ -628,6 +636,13 @@
                         }]
                     },
                     options: {
+                        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
                         title: {
                             display: true,
                             text: titleDisplayText

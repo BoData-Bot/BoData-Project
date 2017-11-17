@@ -7,7 +7,7 @@ import datetime
 app = Flask(__name__)
 CORS(app)
 
-pathTo = '/Users/ericnguyen/BoData-Project/dummyserver/'
+pathTo = '/Users/xuan/Desktop/BoData-Project/dummyserver/'
 
 @app.route('/statics/')
 @app.route('/statics/<name>')
