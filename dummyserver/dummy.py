@@ -36,11 +36,11 @@ def serve_css(name=None):
     return t
 
 
-filepath = pathTo + 'boData_mockupUser.xlsx'
+filepath = pathTo + 'boData_mockupUser (1).xlsx'
 xl = pd.ExcelFile(filepath)
 df1 = xl.parse('Data')
 numrows = 730
-products = ['ProdA', 'ProdB', 'ProdC', 'CompA', 'CompB', 'CompC']
+products = ['Dr. Pepper', '7UP']
 mentionsdict = dict()
 for i in range(numrows):
     cityname = df1.get_value(i, 'City')
