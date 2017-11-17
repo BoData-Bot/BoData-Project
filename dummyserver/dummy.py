@@ -7,7 +7,7 @@ import datetime
 app = Flask(__name__)
 CORS(app)
 
-pathTo = '/Users/xuan/Desktop/BoData-Project/dummyserver/'
+pathTo = '/Users/ericnguyen/BoData-Project/dummyserver/'
 
 @app.route('/statics/')
 @app.route('/statics/<name>')
@@ -112,4 +112,3 @@ def getmentionsfigure():
 @app.route("/")
 def hello():
     return "Hello!"
-

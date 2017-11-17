@@ -19,8 +19,13 @@
 
 
     <style>
+
+        .space-filler {
+            height : 50px;
+        }
+
         .container-eric {
-            width: 70%;
+            width: 80%;
             margin: 15px auto;
         }
 
@@ -116,37 +121,54 @@
 
             <div class="col-md-3" text="Product">
 
-                <legend>Product</legend>
-                <Select id="product-select">
-                    <option selected="selected">ProdA</option>
-                    <option>ProdB</option>
+                <h3>Product</h3>
+                <Select id="product-select1">
+                    <option selected="selected">Dr. Pepper</option>
+                    <option>7UP</option>
+                    <option>None</option>
                 </Select>
                 <!--<label for="month_start">Month</label>-->
                 <!--<select id="month_start"-->
                 <!--name="month_start" />-->
+
+                <div class="space-filler"></div>
+
+                <Select id="product-select2">
+                    <option>Dr. Pepper</option>
+                    <option>7UP</option>
+                    <option selected="selected">None</option>
+                </Select>
+
             </div>
 
-            <div class="col-md-3" text="Location">
+            <div class="col-md-5" text="Location">
 
-                <legend>Location</legend>
-                <Select id="location-select">
-                    <option selected="selected">Bangkok</option>
-                    <option>Kuala Lampur</option>
+                <h3>Location</h3>
+                <Select id="location-select1">
+                    <option selected="selected">Mumbai</option>
+                    <option>Bangkok</option>
+                    <option>None</option>
                 </Select>
-                <!--<label for="month_start">Month</label>-->
-                <!--<select id="month_start"-->
-                <!--name="month_start" />-->
+
+                <div class="space-filler"></div>
+
+                <Select id="location-select2">
+                    <option>Mumbai</option>
+                    <option>Bangkok</option>
+                    <option selected="selected">None</option>
+                </Select>
+
             </div>
             <div>
                 <fieldset class="date">
-                    <legend>Start Date </legend>
+                    <h3>Start Date </h3>
                     <label for="month_start">Month</label>
                     <select id="month_start"
                             name="month_start" />
                     <option selected="selected">01</option>
                     <option>02</option>
                     <option>03</option>
-                    <option >04</option>
+                    <option>04</option>
                     <option>05</option>
                     <option>06</option>
                     <option>07</option>
@@ -212,7 +234,7 @@
                 </fieldset>
 
                 <fieldset class="date">
-                    <legend>End Date </legend>
+                    <h3>End Date </h3>
                     <label for="month_end">Month</label>
                     <select id="month_end"
                             name="month_end" />
@@ -284,23 +306,14 @@
                     <span class="inst"></span>
                 </fieldset>
 
-                <div>
+                <div class="col-md-3">
                     <button id="update-button" type="button" onclick="refreshData()">Update
                     </button>
-
                 </div>
 
-                <!--<div class="dropdown">-->
-                <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Date-->
-                <!--<span class="caret"></span></button>-->
-                <!--<ul class="dropdown-menu">-->
-                <!--<li><a href="#">Fix Me!</a></li>-->
-                <!--<li><a href="#">Fix Me!</a></li>-->
-                <!--</ul>-->
-                <!--</div>-->
-
             </div>
-        </div>
+        </div>   <!--  end row div   -->
+
         <!-- Area Chart Example-->
         <br><br><br>
         <div class="row">
@@ -359,96 +372,95 @@
     <script>
 
         // global variables
-//        var monthlyTotal = [];
         var beginDate = "2017-01-01";  // don't need this anymore, just POST request the whole year
-        var productName;
+        var endDate = "2017-12-31";
 
         var m_start;  // string version
         var m_end;  // string version
 
-        var endDate = "2017-12-31";
-        var locationSelected;
-        var productLoc;
+        var bothMonthlyTotals = [];  // array of arrays
+
+        var productName1;
+        var productName2;
+
+        var locationSelected1;
+        var locationSelected2;
+
+        var productLoc1;
+        var productLoc2;
 
         // global variables, bad practice I know...
         var firstGraphMade = false;
         var productMentionsGraph;
         var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+
+
         //   -----       at start, grabTextData, send new request, make graph   -----   //
         $(document).ready(function(){
-            refreshData();
-            makePost();
+//            refreshData();
+//            makePost();
         })
 
-//        function grabTextData() {
-//            // grab updated text values from drop down selections
-//            productName = $("#product-select option:selected").text();
-//            locationSelected = $("#location-select option:selected").text();
-//            productLoc = "[['" + productName + "']," + "['" + locationSelected + "']]";
-//
-//            var y_start = $("#year_start option:selected").text();
-//            m_start = $("#month_start option:selected").text();
-//            var d_start = $("#day_start option:selected").text();
-////            beginDate = y_start + '-' + m_start + '-' + d_start;
-//
-//            var y_end = $("#year_end option:selected").text();
-//            m_end = $("#month_end option:selected").text();
-//            var d_end = $("#day_end option:selected").text();
-////            endDate = y_end + '-' + m_end + '-' + d_end;
-//            makePost();
-//        };  // end refresh()
-
-        // refreshData
+        // grab updated text values from drop down selections
         function refreshData() {
-            // grab updated text values from drop down selections
-            productName = $("#product-select option:selected").text();
-            locationSelected = $("#location-select option:selected").text();
-            productLoc = "[['" + productName + "']," + "['" + locationSelected + "']]";
 
+            // for product 1
+            productName1 = $("#product-select1 option:selected").text();
+            locationSelected1 = $("#location-select1 option:selected").text();
+            productLoc1 = "[['" + productName1 + "']," + "['" + locationSelected1 + "']]";
+
+            // for product 2
+            productName2 = $("#product-select2 option:selected").text();
+            locationSelected2 = $("#location-select2 option:selected").text();
+            productLoc2 = "[['" + productName2 + "']," + "['" + locationSelected2 + "']]";
+
+            // dates for both products
             var y_start = $("#year_start option:selected").text();
             m_start = $("#month_start option:selected").text();
             var d_start = $("#day_start option:selected").text();
-//            beginDate = y_start + '-' + m_start + '-' + d_start;
 
             var y_end = $("#year_end option:selected").text();
             m_end = $("#month_end option:selected").text();
             var d_end = $("#day_end option:selected").text();
-//            endDate = y_end + '-' + m_end + '-' + d_end;
 
-            console.log("the refresh data: " + productLoc);
+            console.log(productLoc1);
+            console.log(productLoc2);
 
+            // makes post request for both products
             makePost();
+
+//            console.log("the monthly total is: " + monthlyTotal1);
+
         };  // end refresh()
 
         // send new POST request for mentions
         function makePost() {
 
-            var monthlyTotal = [];
+            bothMonthlyTotals = [];  // reset the monthly totals array
 
+            var monthlyTotal1 = [];
+            var monthlyTotal2 = [];
+
+            var daysByMonth2017 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var cummulativeStartIndex = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+            var cummulativeEndIndex = [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
+            var month2017 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            // makes first POST request
             $.post("http://localhost:5000/getmentionsfigure",
                 {
                     begin: beginDate,
                     end: endDate,
-                    products: productLoc
+                    products: productLoc1
                 },
                 function (data, status) {  // success function to create a monthly values array
                     data = eval(data); // convert to array
-
-//                    console.log("the post return data: " + data);
-//                    monthlyTotal = [];  // reset monthly total
 
                     mStart = parseInt(m_start) - 1;  // convert to int
                     mEnd = parseInt(m_end) - 1;  // convert to int
 
                     var xAxisLength = mEnd - mStart + 1;  // get number of entries (size of array to expect)
-
-                    var daysByMonth2017 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-                    var cummulativeStartIndex = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-                    var cummulativeEndIndex = [31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
-
-                    var month2017 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
                     var totalMentions = 0;
                     var startIndex = cummulativeStartIndex[mStart];
 
@@ -459,30 +471,106 @@
                         for (day = cummulativeStartIndex[month]; day < cummulativeEndIndex[month]; day++) {
                             tempTotal += data[day];
                         }
-                        monthlyTotal.push(tempTotal);
+                        monthlyTotal1.push(tempTotal);
 //                        console.log("the before monthly total is: " + monthlyTotal);
                     }  // end for loop
 
-                    console.log("the before monthly total is: " + monthlyTotal);
-                    makeGraph(monthlyTotal);
-
+                    bothMonthlyTotals.push(monthlyTotal1);
                 }  // end post
             )  // end success function
 
 
+
+            //  ----------------------  //
+
+
+            // make second POST request for other product
+            $.post("http://localhost:5000/getmentionsfigure",
+                {
+                    begin: beginDate,
+                    end: endDate,
+                    products: productLoc2
+                },
+                function (data, status) {  // success function to create a monthly values array
+                    data = eval(data); // convert to array
+
+                    mStart = parseInt(m_start) - 1;  // convert to int
+                    mEnd = parseInt(m_end) - 1;  // convert to int
+
+                    var xAxisLength = mEnd - mStart + 1;  // get number of entries (size of array to expect)
+                    var totalMentions = 0;
+                    var startIndex = cummulativeStartIndex[mStart];
+
+                    for (month = 0; month < 12; month++) {  // for all the months
+                        var tempTotal = 0;
+                        var start = 0;
+
+                        for (day = cummulativeStartIndex[month]; day < cummulativeEndIndex[month]; day++) {
+                            tempTotal += data[day];
+                        }
+                        monthlyTotal2.push(tempTotal);
+//                        console.log("the before monthly total is: " + monthlyTotal2);
+                    }  // end for loop
+
+                    bothMonthlyTotals.push(monthlyTotal2);
+
+                    // to handle asychronous calling
+                    if(bothMonthlyTotals.length == 2) {
+                        console.log(bothMonthlyTotals[0]);
+                        makeGraph(bothMonthlyTotals);
+                    }
+                }  // end post
+            )  // end success function
         };  // end makePost function
 
-        function makeGraph(monthlyTotal) {
 
-            console.log(monthlyTotal);
+        //  make the graph for 2 products
+        function makeGraph(bothMonthlyTotals) {
+            // bothMonthlyTotals = size 2 array of monthly totals for 2 productss
+
+            var productLabel2;
+
+            // chart color values
+            var clearBorderColor = '#ffffff';
+            var clearBackgroundColor = "rgba(220,53,69,0)";
+
+            var redBorderColor = '#dc3545';
+            var redBackgroundColor = 'rgba(220,53,69,0.2)';
+
+            // colors for product 2 selected (default)
+//            var product2background = redBackgroundColor;
+//            var product2border = redBorderColor;
+
+            var titleDisplayText;
+
+            console.log("product 2 name: " + productName2);
+//            console.log(bothMonthlyTotals[0]);
+
+            // if product is selected None, then change all the colors for product 2 to be clear
+            if(productName2 != 'None') {
+                product2background = redBackgroundColor;
+                product2border = redBorderColor;
+                titleDisplayText = productName1 + ' in ' + locationSelected1 + ' and ' + productName2 + ' in ' + locationSelected2;
+                productLabel2 = productName2;
+            }
+
+            else {
+                product2background = clearBackgroundColor;
+                product2border = clearBorderColor;
+                titleDisplayText = productName1 + ' in ' + locationSelected1;
+                productLabel2 = ' ';
+            }
 
             mStartIndex = parseInt(m_start) - 1;  // convert to int
             mEndIndex = parseInt(m_end) - 1;  // convert to int
 
+            monthlyTotal1 = bothMonthlyTotals[0].slice(mStartIndex,mEndIndex+1);
+            monthlyTotal2 = bothMonthlyTotals[1].slice(mStartIndex,mEndIndex+1);
+
             // adjust the labels
             newLabels = labels.slice(mStartIndex,mEndIndex+1);
 
-            // make the graph
+//            // make the graph
             var ctx = document.getElementById('productMentions').getContext('2d');
 
             // if not the first graph, make a new one
@@ -493,17 +581,23 @@
                     data: {
                         labels: newLabels,
                         datasets: [{
-                            label: productName,
-                            data: monthlyTotal,
+                            label: productName1,
+                            data: monthlyTotal1,
                             backgroundColor: "rgba(0,123,255,.2)",
                             borderColor: "#007bff",
+                            borderDash: [5, 5]
+                        }, {
+                            label: productLabel2,
+                            data: monthlyTotal2,
+                            backgroundColor: product2background,
+                            borderColor: product2border,
                             borderDash: [5, 5]
                         }]
                     },
                     options: {
                         title: {
                             display: true,
-                            text: productName + ' in ' + locationSelected
+                            text: titleDisplayText
                         }
                     }
                 });  // end making graph
@@ -520,17 +614,23 @@
                     data: {
                         labels: newLabels,
                         datasets: [{
-                            label: productName,
-                            data: monthlyTotal,
+                            label: productName1,
+                            data: monthlyTotal1,
                             backgroundColor: "rgba(0,123,255,.2)",
                             borderColor: "#007bff",
+                            borderDash: [5, 5]
+                        }, {
+                            label: productLabel2,
+                            data: monthlyTotal2,
+                            backgroundColor: product2background,
+                            borderColor: product2border,
                             borderDash: [5, 5]
                         }]
                     },
                     options: {
                         title: {
                             display: true,
-                            text: productName + ' in ' + locationSelected
+                            text: titleDisplayText
                         }
                     }
                 });  // end making graph
@@ -538,24 +638,6 @@
         }  // end makeGraph()
 
     </script>
-
-    <!--second item for later-->
-
-    <!--, {-->
-    <!--label: 'ProdB',-->
-    <!--data: [2, 29, 5, 5, 2, 3, 10, 2, 3, 10, 2, 3, 10],-->
-    <!--backgroundColor: "rgba(220,53,69,0.2)",-->
-    <!--borderColor: "#dc3545",-->
-    <!--borderDash: [5,5]-->
-    <!--}-->
-
-    <!--options: {-->
-    <!--title: {-->
-    <!--display: true,-->
-    <!--text: productName + ' in ' + locationSelected-->
-    <!--}-->
-    <!--}-->
-
 
 </div>
 </body>
