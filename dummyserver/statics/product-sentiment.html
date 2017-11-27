@@ -102,8 +102,12 @@
           <label>Product</label>
           <br>
           <select id="sentiment-product">
-              <option>Dr. Pepper</option>
-              <option>7UP</option>
+            <option>coffee</option>
+            <option>muffins</option>
+            <option>latte</option>
+            <option>water</option>
+            <option>chocolate</option>
+            <option>cookie</option>
           </select>
           <br><br>
           <div><input type="button" id = "analyze-button" value="analyze" onclick = "test_function()"/></div>
@@ -122,8 +126,7 @@
           <label>Location</label>
           <br>
           <select id="sentiment-location">
-              <option>Bangkok</option>
-              <option>Mumbai</option>
+              <option>New York</option>
           </select>
         <br><br>
         <div><input type="button" id = "download-button" value="download data"></div>
@@ -275,12 +278,13 @@
               function(data, status){
                 realdata = eval(data);
 
-                  for(var i = 0; i < realdata.length-1; i++) {
+                  for(var i = 0; i < realdata.length; i++) {
 
                       line = realdata[i];
                       var sentence = line[0];
                       var sentiment = line[1];
                       var confidence = line[2];
+                      //console.log(sentence);
                       if (sentiment == "positive") {
                           var color = "#20c997;"
                           counter_pos = counter_pos +1;
@@ -407,7 +411,7 @@
 //          }
 //      });
 
-
+  document.getElementById("analyze-button").click();
   </script>
 
 
