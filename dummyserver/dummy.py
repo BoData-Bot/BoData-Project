@@ -68,8 +68,8 @@ for i in range(numrows2):
 print("100%")
 
 
-@app.route("/getsentimentfigure", methods=["POST"])
-def getsentimentfigure():
+#@app.route("/getsentimentfigure", methods=["POST"])
+def getsentimentfigure_():
     global sentimentdict
     products = request.form['products']
     if type(products) == str:
@@ -106,6 +106,66 @@ def getmentionsfigure():
                     tmp += mentionsdict[ (currday.year, currday.month, currday.day, product, city) ]
         result.append(tmp)
         currday += oneday
+    return str(result)
+
+
+filepath2 = pathTo + 'Data2.xlsx'
+xl2 = pd.ExcelFile(filepath2)
+st1 = xl2.parse('Sheet0')
+mentionsdict2 = dict()
+for i in range(21):
+    tmp_keyword = st1.get_value(i, "Keyword")
+    tmp_hour = st1.get_value(i, "Hour")
+    if (tmp_hour, tmp_keyword) in mentionsdict2:
+        mentionsdict2[ (tmp_hour, tmp_keyword) ] += 1
+    else:
+        mentionsdict2[ (tmp_hour, tmp_keyword) ] = 1
+print(mentionsdict2)
+
+
+sentimentdict2 = dict()
+st2 = xl2.parse('Sheet1')
+for i in range(21):
+    product = st2.get_value(i, 'Key Word')
+    #city = "New York"
+    s = st2.get_value(i, 'Snippet')
+    pon = st2.get_value(i, 'Polarity')
+    c = st2.get_value(i, 'Polarity Confidence')
+    if not product in sentimentdict2:
+        sentimentdict2[product] = [ ]
+    sentimentdict2[product].append([s, pon, float(c)])
+print(sentimentdict2)
+
+
+@app.route("/getsentimentfigure", methods=["POST"])
+def getsentimentfigure():
+    global sentimentdict2
+    products = request.form['products']
+    if type(products) == str:
+        products = eval(products)
+    cities = products[1]
+    products = products[0]
+    result = [ ]
+    for product in products:
+        if product in sentimentdict2:
+            result += sentimentdict2[product]
+    return str(result)
+
+
+@app.route("/getmentionsfigure2", methods=["POST"])
+def getmentionsfigure2():
+    global mentionsdict2
+    begintime = int(request.form['begin'])
+    endtime = int(request.form['end'])
+    currtime = begintime
+    result = [ ]
+    while currtime <= endtime:
+        product = request.form['products']
+        tmp = 0
+        if (currtime, product) in mentionsdict2:
+            tmp += mentionsdict2[ (currtime, product) ]
+        result.append(tmp)
+        currtime += 1
     return str(result)
 
 
